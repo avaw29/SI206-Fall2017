@@ -1,8 +1,11 @@
+import re
+
 fname = "mbox-short.txt"
 f = open(fname, "r")
 for line in f.readlines():
-    if "From" in line:
+    if re.search('From', line):
         print (line)
-        name = line.split()[1]
-        n = name.split("@")[0]
-        print (n)
+        numbers = re.findall('[0-9]+', line)
+        print (numbers)
+        name = line.split()[1].split("@")[0]
+        print (name)
